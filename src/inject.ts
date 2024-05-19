@@ -1,3 +1,4 @@
+import { detectCycles } from './cycles';
 import { MissingProviderError } from './errors';
 import { getStore } from './store';
 import type { Class, InjectionToken, Token } from './token';
@@ -30,12 +31,12 @@ export function inject<T>(token: Token<T>, options: InjectOptions<T> = {}): T {
       return entry.value as T;
 
     case 'factory':
-      const value = entry.factory();
+      const value = detectCycles(token, entry.factory);
       store.setValue(token, value);
       return value as T;
 
     case 'class':
-      const object = new entry.class();
+      const object = detectCycles(token, () => new entry.class());
       store.setValue(token, object);
       return object as T;
   }

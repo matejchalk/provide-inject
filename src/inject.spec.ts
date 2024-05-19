@@ -42,6 +42,61 @@ describe('inject', () => {
     expect(inject(token, { defaultValue: false })).toBe(false);
   });
 
+  it('should detect direct cycles', () => {
+    const token1 = new InjectionToken<typeof factory1>('#1');
+    const token2 = new InjectionToken<typeof factory1>('#2');
+    function factory1() {
+      inject(token2);
+    }
+    function factory2() {
+      inject(token1);
+    }
+    getStore().setFactory(token1, factory1);
+    getStore().setFactory(token2, factory2);
+
+    expect(() => inject(token1)).toThrow(
+      'Circular dependency: InjectionToken("#1") -> InjectionToken("#2") -> InjectionToken("#1")'
+    );
+  });
+
+  it('should detect indirect cycles', () => {
+    class A {
+      constructor() {
+        inject(B);
+      }
+    }
+    class B {
+      constructor() {
+        inject(C);
+      }
+    }
+    class C {
+      constructor() {
+        inject(A);
+      }
+    }
+    getStore().setClass(A, A);
+    getStore().setClass(B, B);
+    getStore().setClass(C, C);
+
+    expect(() => inject(A)).toThrow(
+      'Circular dependency: class A -> class B -> class C -> class A'
+    );
+  });
+
+  it('should detect cycle on self', () => {
+    class InfiniteLoop {
+      constructor() {
+        inject(InfiniteLoop);
+      }
+    }
+    getStore().setClass(InfiniteLoop, InfiniteLoop);
+
+    expect(() => inject(InfiniteLoop)).toThrow(
+      'Circular dependency: class InfiniteLoop -> class InfiniteLoop'
+    );
+  });
+
   it('should only call factory function on first inject', () => {
     const token = new InjectionToken('LOGGER');
     const createLogger = vi.fn();
