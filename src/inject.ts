@@ -12,7 +12,7 @@ export function inject<T>(
 ): T;
 export function inject<T>(klass: Class<T>, options?: InjectOptions<T>): T;
 
-// TODO: detect cycles, cache factories and constructors
+// TODO: detect cycles
 export function inject<T>(token: Token<T>, options: InjectOptions<T> = {}): T {
   const store = getStore();
 
@@ -28,9 +28,15 @@ export function inject<T>(token: Token<T>, options: InjectOptions<T> = {}): T {
   switch (entry.type) {
     case 'value':
       return entry.value as T;
+
     case 'factory':
-      return entry.factory() as T;
+      const value = entry.factory();
+      store.setValue(token, value);
+      return value as T;
+
     case 'class':
-      return new entry.class() as T;
+      const object = new entry.class();
+      store.setValue(token, object);
+      return object as T;
   }
 }
