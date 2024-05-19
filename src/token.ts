@@ -6,7 +6,7 @@ export class InjectionToken<T> {
   }
 
   toString() {
-    return `InjectionToken(${this.#description})`;
+    return `InjectionToken(${JSON.stringify(this.#description)})`;
   }
 }
 
