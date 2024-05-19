@@ -1,0 +1,43 @@
+{
+  "name": "provide-inject",
+  "version": "0.0.0",
+  "license": "MIT",
+  "description": "Dependency injection made simple",
+  "author": "Matěj Chalk <matej.chalk@flowup.cz>",
+  "keywords": [
+    "dependency injection"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matejchalk/di.git"
+  },
+  "homepage": "https://github.com/matejchalk/di#readme",
+  "bugs": {
+    "url": "https://github.com/matejchalk/di/issues"
+  },
+  "type": "module",
+  "files": [
+    "dist/"
+  ],
+  "types": "dist/index.d.ts",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "scripts": {
+    "prepublishOnly": "npm run build",
+    "build": "tsup",
+    "test": "vitest run",
+    "test:watch": "vitest watch"
+  },
+  "devDependencies": {
+    "tsup": "^8.0.2",
+    "typescript": "^5.4.5",
+    "vitest": "^1.6.0"
+  }
+}
