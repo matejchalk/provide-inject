@@ -1,5 +1,9 @@
 # provide-inject
 
+[![npm](https://img.shields.io/npm/v/provide-inject.svg)](https://www.npmjs.com/package/provide-inject)
+[![CI](https://github.com/matejchalk/provide-inject/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/matejchalk/provide-inject/actions/workflows/ci.yml?query=branch%3Amain)
+[![codecov](https://codecov.io/github/matejchalk/provide-inject/graph/badge.svg?token=HQ73M0I4WR)](https://codecov.io/github/matejchalk/provide-inject)
+
 💉 **Dependency injection** made simple.
 
 ## Features
