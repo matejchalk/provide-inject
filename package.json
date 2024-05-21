@@ -1,6 +1,6 @@
 {
   "name": "provide-inject",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "license": "MIT",
   "description": "Dependency injection made simple",
   "author": "Matěj Chalk <matej.chalk@flowup.cz>",
