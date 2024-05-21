@@ -34,11 +34,13 @@
     "build": "tsup",
     "test": "vitest run",
     "test:watch": "vitest watch",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "release": "release-it"
   },
   "devDependencies": {
     "@types/node": "^20.12.12",
     "@vitest/coverage-v8": "^1.6.0",
+    "release-it": "^17.3.0",
     "tsup": "^8.0.2",
     "typescript": "^5.4.5",
     "vitest": "^1.6.0"
