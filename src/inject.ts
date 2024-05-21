@@ -13,7 +13,6 @@ export function inject<T>(
 ): T;
 export function inject<T>(klass: Class<T>, options?: InjectOptions<T>): T;
 
-// TODO: detect cycles
 export function inject<T>(token: Token<T>, options: InjectOptions<T> = {}): T {
   const store = getStore();
 
