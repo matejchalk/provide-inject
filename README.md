@@ -118,7 +118,7 @@ const LOGGER_TOKEN = new InjectionToken<Logger>('LOGGER');
 provide({ token: LOGGER_TOKEN, useFactory: createLogger });
 
 function createUserService() {
-  const logger = inject(LOGGER);
+  const logger = inject(LOGGER_TOKEN);
 
   return {
     signOut() {
