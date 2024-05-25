@@ -9,11 +9,11 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/matejchalk/di.git"
+    "url": "git+https://github.com/matejchalk/provide-inject.git"
   },
-  "homepage": "https://github.com/matejchalk/di#readme",
+  "homepage": "https://github.com/matejchalk/provide-inject#readme",
   "bugs": {
-    "url": "https://github.com/matejchalk/di/issues"
+    "url": "https://github.com/matejchalk/provide-inject/issues"
   },
   "type": "module",
   "files": [
